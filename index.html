@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="VYNTRA AI - Your intelligent personal AI assistant by Ezhil."
+    >
+
+    <title>VYNTRA AI | by Ezhil</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND GLOW -->
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+
+    <!-- MAIN APP -->
+
+    <div class="app">
+
+
+        <!-- ==============================
+             SIDEBAR
+        =============================== -->
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+            <!-- SIDEBAR HEADER -->
+
+            <div class="sidebar-top">
+
+                <div class="brand">
+
+                    <div class="brand-logo">
+                        V
+                    </div>
+
+                    <div class="brand-text">
+
+                        <h2>
+                            VYNTRA AI
+                        </h2>
+
+                        <span>
+                            by Ezhil
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="close-menu"
+                    id="closeMenu"
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- NEW CHAT -->
+
+            <button
+                class="new-chat"
+                id="newChat"
+            >
+
+                <span>＋</span>
+
+                New Chat
+
+            </button>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    placeholder="Search conversations"
+                    id="searchInput"
+                >
+
+            </div>
+
+
+
+            <!-- CHAT HISTORY -->
+
+            <div class="history-section">
+
+                <p class="history-title">
+                    TODAY
+                </p>
+
+
+                <div
+                    class="history-list"
+                    id="historyList"
+                >
+
+                    <button
+                        class="history-item active"
+                    >
+
+                        <span class="history-icon">
+                            ◌
+                        </span>
+
+
+                        <span>
+
+                            <b>
+                                Welcome to VYNTRA AI
+                            </b>
+
+                            <small>
+                                Start a conversation
+                            </small>
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SIDEBAR BOTTOM -->
+
+            <div class="sidebar-bottom">
+
+                <button class="side-option">
+
+                    <span>⚙</span>
+
+                    Settings
+
+                </button>
+
+
+                <div class="local-card">
+
+                    <div class="local-card-icon">
+                        AI
+                    </div>
+
+
+                    <div>
+
+                        <b>
+                            VYNTRA AI
+                        </b>
+
+                        <span>
+                            Powered by Gemini
+                        </span>
+
+                    </div>
+
+
+                    <div class="online-dot"></div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ==============================
+             MAIN SECTION
+        =============================== -->
+
+        <main class="main">
+
+
+            <!-- HEADER -->
+
+            <header class="header">
+
+                <div class="header-left">
+
+                    <button
+                        class="menu-button"
+                        id="menuButton"
+                        aria-label="Open menu"
+                    >
+                        ☰
+                    </button>
+
+
+                    <div>
+
+                        <h3>
+                            VYNTRA AI
+                        </h3>
+
+
+                        <div class="status">
+
+                            <span></span>
+
+                            AI Online
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="header-actions">
+
+                    <button
+                        class="icon-button"
+                        id="clearChat"
+                        title="Clear Chat"
+                    >
+                        ↻
+                    </button>
+
+
+                    <div
+                        class="profile"
+                        title="by Ezhil"
+                    >
+                        EP
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- ==============================
+                 CHAT AREA
+            =============================== -->
+
+            <section
+                class="chat-area"
+                id="chatBox"
+            >
+
+
+                <!-- ==============================
+                     WELCOME SCREEN
+                =============================== -->
+
+                <div
+                    class="welcome"
+                    id="welcome"
+                >
+
+
+                    <!-- AI BRAIN + ROBOT AREA -->
+
+                    <div class="ai-visual-area">
+
+
+                        <!-- AI BRAIN -->
+
+                        <div class="brain-container">
+
+
+                            <div class="brain-glow"></div>
+
+
+                            <div class="brain">
+
+
+                                <!-- LEFT BRAIN -->
+
+                                <div
+                                    class="
+                                        brain-half
+                                        brain-left
+                                    "
+                                >
+
+                                    <span
+                                        class="node n1"
+                                    ></span>
+
+                                    <span
+                                        class="node n2"
+                                    ></span>
+
+                                    <span
+                                        class="node n3"
+                                    ></span>
+
+                                    <span
+                                        class="node n4"
+                                    ></span>
+
+
+                                    <span
+                                        class="circuit c1"
+                                    ></span>
+
+                                    <span
+                                        class="circuit c2"
+                                    ></span>
+
+                                    <span
+                                        class="circuit c3"
+                                    ></span>
+
+                                </div>
+
+
+
+                                <!-- CENTER LINE -->
+
+                                <div class="brain-line"></div>
+
+
+
+                                <!-- RIGHT BRAIN -->
+
+                                <div
+                                    class="
+                                        brain-half
+                                        brain-right
+                                    "
+                                >
+
+                                    <span
+                                        class="node n1"
+                                    ></span>
+
+                                    <span
+                                        class="node n2"
+                                    ></span>
+
+                                    <span
+                                        class="node n3"
+                                    ></span>
+
+                                    <span
+                                        class="node n4"
+                                    ></span>
+
+
+                                    <span
+                                        class="circuit c1"
+                                    ></span>
+
+                                    <span
+                                        class="circuit c2"
+                                    ></span>
+
+                                    <span
+                                        class="circuit c3"
+                                    ></span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="brain-label">
+                                VYNTRA AI CORE
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ==============================
+                             3D ROBOT
+                        =============================== -->
+
+                        <div class="robot-container">
+
+
+                            <div class="robot-glow"></div>
+
+
+                            <div class="robot">
+
+
+                                <!-- ANTENNA -->
+
+                                <div class="robot-antenna">
+
+                                    <span></span>
+
+                                </div>
+
+
+
+                                <!-- HEAD -->
+
+                                <div class="robot-head">
+
+
+                                    <div class="robot-face">
+
+                                        <span
+                                            class="
+                                                eye
+                                                left-eye
+                                            "
+                                        ></span>
+
+
+                                        <span
+                                            class="
+                                                eye
+                                                right-eye
+                                            "
+                                        ></span>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- NECK -->
+
+                                <div class="robot-neck"></div>
+
+
+
+                                <!-- BODY -->
+
+                                <div class="robot-body">
+
+                                    <div class="robot-chest">
+                                        AI
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- ARMS -->
+
+                                <div
+                                    class="
+                                        robot-arm
+                                        arm-left
+                                    "
+                                ></div>
+
+
+                                <div
+                                    class="
+                                        robot-arm
+                                        arm-right
+                                    "
+                                ></div>
+
+
+                            </div>
+
+
+                            <div class="robot-shadow"></div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ==============================
+                         WELCOME TEXT
+                    =============================== -->
+
+                    <p class="welcome-small">
+
+                        SMART • SECURE • INTELLIGENT
+
+                    </p>
+
+
+                    <h1>
+
+                        Welcome to
+
+                        <span>
+                            VYNTRA AI.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="welcome-description">
+
+                        Your intelligent personal AI assistant
+                        designed by Ezhil.
+
+                        Ask questions, learn, code,
+                        create and explore.
+
+                    </p>
+
+
+                    <p
+                        style="
+                            margin-top: 8px;
+                            font-size: 12px;
+                            color: rgba(255,255,255,.75);
+                            letter-spacing: 1px;
+                        "
+                    >
+                        by Ezhil
+                    </p>
+
+
+
+                    <!-- ==============================
+                         MAIN AI INPUT
+                    =============================== -->
+
+                    <div class="hero-prompt">
+
+
+                        <textarea
+                            id="heroInput"
+                            rows="1"
+                            placeholder="Ask VYNTRA AI anything..."
+                        ></textarea>
+
+
+
+                        <div class="prompt-bottom">
+
+
+                            <div class="prompt-tools">
+
+
+                                <button
+                                    type="button"
+                                    title="Add"
+                                >
+                                    ＋
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="mode-button"
+                                >
+                                    ◇ Normal
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="mode-button"
+                                >
+                                    ✦ Deep Think
+                                </button>
+
+
+                            </div>
+
+
+
+                            <button
+                                type="button"
+                                class="hero-send"
+                                id="heroSend"
+                                aria-label="Send message"
+                            >
+                                ➤
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ==============================
+                         QUICK ACTIONS
+                    =============================== -->
+
+                    <div class="quick-actions">
+
+
+                        <!-- PROGRAMMING -->
+
+                        <button
+                            type="button"
+                            onclick="
+                                useSuggestion(
+                                    'Help me write and understand a programming solution'
+                                )
+                            "
+                        >
+
+                            <div class="quick-icon">
+                                &lt;/&gt;
+                            </div>
+
+
+                            <div>
+
+                                <b>
+                                    Programming
+                                </b>
+
+                                <span>
+                                    Write, debug and explain code
+                                </span>
+
+                            </div>
+
+                        </button>
+
+
+
+                        <!-- NETWORKING -->
+
+                        <button
+                            type="button"
+                            onclick="
+                                useSuggestion(
+                                    'Teach me networking and CCNA concepts'
+                                )
+                            "
+                        >
+
+                            <div class="quick-icon">
+                                ◎
+                            </div>
+
+
+                            <div>
+
+                                <b>
+                                    Networking
+                                </b>
+
+                                <span>
+                                    Learn networking and CCNA
+                                </span>
+
+                            </div>
+
+                        </button>
+
+
+
+                        <!-- CLOUD -->
+
+                        <button
+                            type="button"
+                            onclick="
+                                useSuggestion(
+                                    'Explain cloud computing in simple terms'
+                                )
+                            "
+                        >
+
+                            <div class="quick-icon">
+                                ☁
+                            </div>
+
+
+                            <div>
+
+                                <b>
+                                    Cloud
+                                </b>
+
+                                <span>
+                                    Explore cloud technologies
+                                </span>
+
+                            </div>
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==============================
+                     CHAT MESSAGES
+                =============================== -->
+
+                <div
+                    class="messages"
+                    id="messages"
+                ></div>
+
+
+            </section>
+
+
+
+            <!-- ==============================
+                 BOTTOM INPUT
+            =============================== -->
+
+            <footer
+                class="bottom-input-area"
+                id="bottomInputArea"
+            >
+
+
+                <div class="bottom-input">
+
+
+                    <textarea
+                        id="userInput"
+                        rows="1"
+                        placeholder="Ask VYNTRA AI anything..."
+                    ></textarea>
+
+
+
+                    <div class="bottom-actions">
+
+
+                        <div class="left-actions">
+
+
+                            <button
+                                type="button"
+                                title="Add"
+                            >
+                                ＋
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="mode-button"
+                            >
+                                ◇ Normal
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="mode-button"
+                            >
+                                ✦ Deep Think
+                            </button>
+
+
+                        </div>
+
+
+
+                        <button
+                            type="button"
+                            id="sendBtn"
+                            class="send-button"
+                            aria-label="Send message"
+                        >
+                            ➤
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <p>
+                    VYNTRA AI • by Ezhil •
+                    AI responses may contain mistakes.
+                </p>
+
+
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- MOBILE SIDEBAR OVERLAY -->
+
+    <div
+        class="mobile-overlay"
+        id="mobileOverlay"
+    ></div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
