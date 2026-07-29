@@ -42,40 +42,77 @@ async function handleGoogleLogin(response) {
     console.log("Google user:", currentUser);
 
     try {
-        const res = await fetch(API_URL, {
+        // 1. First check whether this email already exists
+        const checkResponse = await fetch(API_URL + "/check-access", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                action: "check_access",
-                email: currentUser.email,
-                name: currentUser.name
+                email: currentUser.email
             })
         });
 
-        const data = await res.json();
+        const checkData = await checkResponse.json();
 
-        console.log("Access check:", data);
+        console.log("Access check:", checkData);
 
-        if (data.status === "approved") {
+        // APPROVED
+        if (checkData.status === "approved") {
             document.getElementById("loginScreen").style.display = "none";
             document.getElementById("mainApp").style.display = "flex";
             return;
         }
 
-        if (data.status === "denied") {
+        // DENIED
+        if (checkData.status === "denied") {
             alert("Access denied. Your account is not authorized to use VYNTRA AI.");
             currentUser = null;
             return;
         }
 
-        alert("Access not approved yet. Please wait for administrator approval.");
+        // ALREADY PENDING
+        if (checkData.status === "pending") {
+            alert("Access not approved yet. Please wait for administrator approval.");
+            currentUser = null;
+            return;
+        }
+
+        // NEW GOOGLE ACCOUNT -> create pending request
+        if (checkData.status === "not_requested") {
+
+            const requestResponse = await fetch(API_URL + "/request-access", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: currentUser.email,
+                    name: currentUser.name,
+                    picture: currentUser.picture
+                })
+            });
+
+            const requestData = await requestResponse.json();
+
+            console.log("Access request:", requestData);
+
+            alert(
+                "Access request submitted. Please wait for administrator approval."
+            );
+
+            currentUser = null;
+            return;
+        }
+
+        alert("Unable to determine account access.");
         currentUser = null;
 
     } catch (error) {
         console.error("Access check failed:", error);
+
         alert("Unable to verify access. Please try again.");
+
         currentUser = null;
     }
 }
@@ -203,7 +240,19 @@ async function sendMessage(message) {
 const reply =
     data.reply ||
     "I couldn't generate a response.";
+let finalReply = reply;
 
+if (
+    data.liveSearchUsed &&
+    Array.isArray(data.sources) &&
+    data.sources.length > 0
+) {
+    finalReply += "\n\nSources:\n";
+
+    data.sources.forEach((source, index) => {
+        finalReply += `${index + 1}. [${source.title}](${source.url})\n`;
+    });
+}
 conversationHistory.push({
     role: "user",
     text: text
@@ -211,7 +260,7 @@ conversationHistory.push({
 
 conversationHistory.push({
     role: "assistant",
-    text: reply
+    text: finalReply
 });
 
 // Keep only recent conversation to avoid huge API requests
@@ -220,7 +269,7 @@ if (conversationHistory.length > 20) {
 }
 
 addMessage(
-    reply,
+    finalReply,
     "bot"
 );
 
@@ -345,7 +394,9 @@ function addMessage(
 
     // textContent prevents HTML injection
 if (type === "bot" && !isError) {
-    bubble.innerHTML = marked.parse(text);
+   bubble.innerHTML = marked.parse(text, {
+    breaks: true
+});
 } else {
     bubble.textContent = text;
 }
