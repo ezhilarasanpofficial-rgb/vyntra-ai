@@ -2068,3 +2068,89 @@ body {
         display: none;
     }
 }
+/* ==========================================
+   VYNTRA AI - GOOGLE LOGIN
+========================================== */
+
+.login-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at top, #6c4cff 0%, transparent 35%),
+        linear-gradient(135deg, #090b14, #111426);
+}
+
+.login-card {
+    width: min(90%, 420px);
+    padding: 45px 35px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.35);
+}
+
+.login-logo {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: linear-gradient(135deg, #805cff, #5538ff);
+
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.login-card h1 {
+    margin: 0;
+
+    color: white;
+    font-size: 30px;
+}
+
+.login-by {
+    margin-top: 5px;
+
+    color: #a99cff;
+    font-size: 14px;
+}
+
+.login-description {
+    margin: 25px 0;
+
+    color: rgba(255,255,255,0.75);
+}
+
+#googleSignInButton {
+    display: flex;
+    justify-content: center;
+
+    margin: 20px 0;
+}
+
+.login-note {
+    margin-top: 20px;
+
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+}

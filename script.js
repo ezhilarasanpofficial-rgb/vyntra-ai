@@ -1,10 +1,107 @@
+let conversationHistory = [];
 // ==========================================
 // EZHIL AI - FRONTEND JAVASCRIPT
 // Flask + Ollama + Llama 3.2:3B
 // ==========================================
 
-const API_URL = "https://ezhil-ai-api.ezhilarasan0369.workers.dev";
+const API_URL = "https://vyntra-ai-api.ezhilarasanpofficial.workers.dev";   
+const GOOGLE_CLIENT_ID =
 
+    "271448546787-sabrgtig9evo5mbkhhnpnpet5g1mrvj8.apps.googleusercontent.com";
+let currentUser = null;
+
+window.onload = function () {
+
+    google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleLogin
+    });
+
+    google.accounts.id.renderButton(
+        document.getElementById("googleSignInButton"),
+        {
+            theme: "outline",
+            size: "large",
+            shape: "pill",
+            text: "continue_with",
+            width: 280
+        }
+    );
+};
+
+
+async function handleGoogleLogin(response) {
+    const payload = parseJwt(response.credential);
+
+    currentUser = {
+        name: payload.name,
+        email: payload.email,
+        picture: payload.picture
+    };
+
+    console.log("Google user:", currentUser);
+
+    try {
+        const res = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                action: "check_access",
+                email: currentUser.email,
+                name: currentUser.name
+            })
+        });
+
+        const data = await res.json();
+
+        console.log("Access check:", data);
+
+        if (data.status === "approved") {
+            document.getElementById("loginScreen").style.display = "none";
+            document.getElementById("mainApp").style.display = "flex";
+            return;
+        }
+
+        if (data.status === "denied") {
+            alert("Access denied. Your account is not authorized to use VYNTRA AI.");
+            currentUser = null;
+            return;
+        }
+
+        alert("Access not approved yet. Please wait for administrator approval.");
+        currentUser = null;
+
+    } catch (error) {
+        console.error("Access check failed:", error);
+        alert("Unable to verify access. Please try again.");
+        currentUser = null;
+    }
+}
+
+
+function parseJwt(token) {
+
+    const base64Url = token.split(".")[1];
+
+    const base64 = base64Url
+        .replace(/-/g, "+")
+        .replace(/_/g, "/");
+
+    const jsonPayload = decodeURIComponent(
+        atob(base64)
+            .split("")
+            .map(function (c) {
+                return "%" +
+                    ("00" + c.charCodeAt(0).toString(16))
+                        .slice(-2);
+            })
+            .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+}
 
 // ==========================================
 // ELEMENTS
@@ -73,8 +170,10 @@ async function sendMessage(message) {
             },
 
             body: JSON.stringify({
-                message: text
-            })
+    message: text,
+    email: currentUser?.email,
+    history: conversationHistory
+})
 
         });
 
@@ -101,33 +200,45 @@ async function sendMessage(message) {
         }
 
 
-        const reply =
-            data.reply ||
-            "I couldn't generate a response.";
+const reply =
+    data.reply ||
+    "I couldn't generate a response.";
+
+conversationHistory.push({
+    role: "user",
+    text: text
+});
+
+conversationHistory.push({
+    role: "assistant",
+    text: reply
+});
+
+// Keep only recent conversation to avoid huge API requests
+if (conversationHistory.length > 20) {
+    conversationHistory = conversationHistory.slice(-20);
+}
+
+addMessage(
+    reply,
+    "bot"
+);
 
 
-        addMessage(
-            reply,
-            "bot"
-        );
+} catch (error) {
 
+    console.error(
+        "VYNTRA AI Error:",
+        error
+    );
 
-    } catch (error) {
+    typingElement.remove();
 
-        console.error(
-            "Ezhil AI Error:",
-            error
-        );
-
-
-        typingElement.remove();
-
-
-        addMessage(
-            "I can't connect to Ezhil AI right now. Please check your internet connection and try again.",
-            "bot",
-            true
-        );
+    addMessage(
+        "DEBUG ERROR: " + (error?.message || String(error)),
+        "bot",
+        true
+    );
 
     } finally {
 
@@ -233,7 +344,11 @@ function addMessage(
 
 
     // textContent prevents HTML injection
+if (type === "bot" && !isError) {
+    bubble.innerHTML = marked.parse(text);
+} else {
     bubble.textContent = text;
+}
 
 
     if (type === "user") {
@@ -486,7 +601,7 @@ if (clearChat) {
 // ==========================================
 
 function resetChat() {
-
+conversationHistory = [];
     chatStarted = false;
     isGenerating = false;
 

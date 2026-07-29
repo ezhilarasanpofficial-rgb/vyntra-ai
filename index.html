@@ -24,6 +24,33 @@
 
 
 <body>
+    <!-- ==============================
+     GOOGLE LOGIN SCREEN
+=============================== -->
+
+<div id="loginScreen" class="login-screen">
+
+    <div class="login-card">
+
+        <div class="login-logo">V</div>
+
+        <h1>VYNTRA AI</h1>
+
+        <p class="login-by">by Ezhil</p>
+
+        <p class="login-description">
+            Sign in with your Google account to continue.
+        </p>
+
+        <div id="googleSignInButton"></div>
+
+        <p class="login-note">
+            Access is available only to approved users.
+        </p>
+
+    </div>
+
+</div>
 
     <!-- BACKGROUND GLOW -->
 
@@ -33,7 +60,7 @@
 
     <!-- MAIN APP -->
 
-    <div class="app">
+<div class="app" id="mainApp">
 
 
         <!-- ==============================
@@ -830,10 +857,14 @@
 
 
 
-    <!-- JAVASCRIPT -->
+<!-- GOOGLE SIGN-IN -->
+<script src="https://accounts.google.com/gsi/client" async></script>
 
-    <script src="script.js"></script>
+<!-- MARKDOWN -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
+<!-- VYNTRA AI JAVASCRIPT -->
+<script src="script.js"></script>
 
 </body>
 
